@@ -1,0 +1,47 @@
+package entity;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import main.GamePanel;
+import main.KeyManager;
+
+public class Player extends Entity{
+	
+	GamePanel gamePanel;
+	KeyManager keyManager;
+	
+	public Player(GamePanel gamePanel, KeyManager keyManager) {
+		this.gamePanel = gamePanel;
+		this.keyManager = keyManager;
+	}
+	
+	public void setDefaultValues() {
+		x = gamePanel.screenWidth / 2 - gamePanel.tileSize / 2;
+		y = gamePanel.screenHeight / 2 - gamePanel.tileSize / 2;
+		speed = 4;
+	}
+	
+	public void update() {
+		
+		if(keyManager.upPressed) {
+			playerY -= playerSpeed;
+		}
+		else if(keyManager.downPressed) {
+			playerY += playerSpeed;
+		}
+		else if(keyManager.rightPressed) {
+			playerX += playerSpeed;
+		}
+		else if(keyManager.leftPressed) {
+			playerX -= playerSpeed;
+		}
+		
+		
+	}
+	public void draw(Graphics2D g2) {
+		g2.setColor(Color.white);
+		g2.fillRect(playerX, playerY, tileSize, tileSize);
+	} 
+
+}

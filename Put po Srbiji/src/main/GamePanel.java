@@ -7,25 +7,33 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable{
 	
-	final int originalTileSize = 16; //16x16 pixel tile
-	final int scale = 3;     //scaling (pixel is actually 3x3 pixels)
-	final int tileSize = originalTileSize * scale;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	final int columns =  20;
-	final int rows = 12;
+	public final int originalTileSize = 16; //16x16 pixel tile
+	public final int scale = 3;     //scaling (pixel is actually 3x3 pixels)
+	public final int tileSize = originalTileSize * scale;
 	
-	final int screenWidth = tileSize * columns;
-	final int screenHeight = tileSize * rows;
+	public final int columns =  20;
+	public final int rows = 12;
+	
+	public final int screenWidth = tileSize * columns;
+	public final int screenHeight = tileSize * rows;
 	
 	int FPS = 60;
 
 	KeyManager keyManager = new KeyManager();
 	Thread gameThread;
+	Player player = new Player(this, keyManager);
 	
 	int playerX = screenWidth / 2 - tileSize / 2;
-	int playerY = screenHeight / 2 + tileSize / 2;
+	int playerY = screenHeight / 2 - tileSize / 2;
 	int playerSpeed = 4;
 
 	
@@ -66,20 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
-		
-		if(keyManager.upPressed) {
-			playerY -= playerSpeed;
-		}
-		else if(keyManager.downPressed) {
-			playerY += playerSpeed;
-		}
-		else if(keyManager.rightPressed) {
-			playerX += playerSpeed;
-		}
-		else if(keyManager.leftPressed) {
-			playerX -= playerSpeed;
-		}
-		
+		player.update();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -87,8 +82,9 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.white);
-		g2.fillRect(playerX, playerY, tileSize, tileSize);
+		
+		player.draw(g2);
+		
 		g2.dispose();
 		
 	}

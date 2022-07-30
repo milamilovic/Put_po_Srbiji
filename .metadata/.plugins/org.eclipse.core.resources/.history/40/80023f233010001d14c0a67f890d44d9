@@ -1,0 +1,23 @@
+package entity;
+
+import main.GamePanel;
+import main.KeyManager;
+
+public class Player extends Entity{
+	
+	GamePanel gamePanel;
+	KeyManager keyManager;
+	
+	public Player(GamePanel gamePanel, KeyManager keyManager) {
+		this.gamePanel = gamePanel;
+		this.keyManager = keyManager;
+	}
+	
+	public void setDefaultValues() {
+		x = gamePanel.screenWidth / 2 - gamePanel.tileSize / 2;
+		y = gamePanel.screenHeight / 2 - gamePanel.tileSize / 2;
+		speed = 4;
+		
+	}
+
+}
