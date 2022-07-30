@@ -1,0 +1,29 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+public class GamePanel extends JPanel{
+	
+	final int originalTileSize = 16; //16x16 pixel tile
+	final int scale = 3;     //scaling (pixel is actually 3x3 pixels)
+	final int tileSize = originalTileSize * scale;
+	
+	final int columns =  20;
+	final int rows = 12;
+	
+	final int screenWidth = tileSize * columns;
+	final int screenHeigth = tileSize * rows;
+
+	
+	public GamePanel() {
+
+		this.setPreferredSize(new Dimension(screenWidth, screenHeigth));
+		this.setBackground(Color.black);
+		this.setDoubleBuffered(true);
+		
+	}
+	
+}
