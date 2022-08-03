@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 	
@@ -28,13 +29,11 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	int FPS = 60;
 
+	TileManager tileManager = new TileManager(this);
 	KeyManager keyManager = new KeyManager();
 	Thread gameThread;
 	Player player = new Player(this, keyManager);
 	
-	int playerX = screenWidth / 2 - tileSize / 2;
-	int playerY = screenHeight / 2 - tileSize / 2;
-	int playerSpeed = 4;
 
 	
 	public GamePanel() {
@@ -83,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
+		tileManager.draw(g2);
 		player.draw(g2);
 		
 		g2.dispose();

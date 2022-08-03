@@ -1,0 +1,66 @@
+package tile;
+
+import java.awt.Graphics2D;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class TileManager {
+
+	GamePanel gamePanel;
+	Tile[] tiles;
+	
+	public TileManager(GamePanel gamePanel) {
+		
+		this.gamePanel = gamePanel;
+		
+		tiles = new Tile[100];
+		
+		this.getTileImages();
+	}
+	
+	public void getTileImages() {
+		
+		try {
+			
+			tiles[0] = new Tile();
+			tiles[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bush(01).png"));
+			tiles[1] = new Tile();
+			tiles[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bush(02).png"));
+			tiles[2] = new Tile();
+			tiles[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bush(03).png"));
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void draw(Graphics2D g2) {
+		
+		int col = 0;
+		int row = 0;
+		int x = 0;
+		int y = 0;
+		
+		while(col < gamePanel.columns && row < gamePanel.rows) {
+			
+			g2.drawImage(tiles[0].image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+			col++;
+			x += gamePanel.tileSize;
+			
+			if(col == gamePanel.columns) {
+				col = 0;
+				x = 0;
+				row++;
+				y += gamePanel.tileSize;
+			}
+			
+		}
+		
+	}
+	
+	
+}
