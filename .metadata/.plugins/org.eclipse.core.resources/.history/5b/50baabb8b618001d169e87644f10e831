@@ -1,0 +1,22 @@
+package main;
+
+import entity.Entity;
+
+public class CollisionChecker {
+	
+	GamePanel gamePanel;
+
+	public CollisionChecker(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
+	
+	public void checkTile(Entity entity) {
+		
+		int entityLeftWorldX = entity.worldX - entity.solidArea.x;
+		int entityRightWorldX = entity.worldX - entity.solidArea.x + entity.solidArea.width;
+		int entityTopWorldX = entity.worldY - entity.solidArea.width;
+		int entityBottomWorldX = entity.worldY - entity.solidArea.x + entity.solidArea.height;
+		
+	}
+
+}
