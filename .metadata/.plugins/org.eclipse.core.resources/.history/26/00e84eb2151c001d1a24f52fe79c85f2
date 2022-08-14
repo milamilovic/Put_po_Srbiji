@@ -12,7 +12,7 @@ public class Gift extends SuperObject{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	    collision = true;
+	this.collision = true;
 		
 	}
 

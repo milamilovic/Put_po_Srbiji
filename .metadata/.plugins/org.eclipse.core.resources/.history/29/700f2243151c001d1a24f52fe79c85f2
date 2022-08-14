@@ -12,11 +12,6 @@ public class Puzzle extends SuperObject{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		solidArea.x = 12;
-		solidArea.y = 12;
-		solidArea.width = 36;
-		solidArea.height = 36;
-		
 		
 	}
 
