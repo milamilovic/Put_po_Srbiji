@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyManager;
-import main.Reminder;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -132,10 +131,18 @@ public class Player extends Entity{
 				int randomNum = ThreadLocalRandom.current().nextInt(0, 2);
 				switch(randomNum) {
 				case 0:
-			        new Reminder(15, this, 3);
+					long startTime = System.currentTimeMillis();
+					speed += 3;
+					while (System.currentTimeMillis() - startTime < 15000) {
+					} 
+					speed -= 3;
 					break;
 				case 1:
-					new Reminder(15, this, -2);
+					long startTime1 = System.currentTimeMillis();
+					speed -= 2;
+					while (System.currentTimeMillis() - startTime1 < 15000) {
+					} 
+					speed += 2;
 					break;
 				}
 			}

@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyManager;
-import main.Reminder;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -129,13 +128,18 @@ public class Player extends Entity{
 				numOfPuzzles++;
 			} else if(gamePanel.obj[i].name.equals("gift")) {
 				gamePanel.obj[i] = null;
-				int randomNum = ThreadLocalRandom.current().nextInt(0, 2);
+				int randomNum = ThreadLocalRandom.current().nextInt(0, 3);
 				switch(randomNum) {
 				case 0:
-			        new Reminder(15, this, 3);
+					long startTime = System.currentTimeMillis();
+					speed += 3;
+					while (System.currentTimeMillis() - startTime < 15000) {
+					} 
+					speed -= 3;
 					break;
 				case 1:
-					new Reminder(15, this, -2);
+					break;
+				case 2:
 					break;
 				}
 			}
