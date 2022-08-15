@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void setUpGame() {
 		om.setObjects();
-		playMusic(2);
+		playMusic(1);
 	}
 	
 	
