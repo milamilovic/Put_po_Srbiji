@@ -127,9 +127,6 @@ public class Player extends Entity{
 				numOfPuzzles++;
 			} else if(gamePanel.obj[i].name.equals("gift")) {
 				numOfGifts++;
-				if(numOfPuzzles == 1 ) {
-					gamePanel.obj[i] = null;
-				}
 			}
 		}
 	}
