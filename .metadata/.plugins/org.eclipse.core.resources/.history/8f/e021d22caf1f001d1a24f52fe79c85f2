@@ -125,12 +125,9 @@ public class Player extends Entity{
 	public void pickUpObject(int i) {
 		if(i != 999) {
 			if(gamePanel.obj[i].name.equals("puzzle")) {
-				gamePanel.playSoundEffect(1);
 				gamePanel.obj[i] = null;
-				gamePanel.ui.showMessage("You found a puzzle piece!");
 				numOfPuzzles++;
 			} else if(gamePanel.obj[i].name.equals("gift")) {
-				gamePanel.playSoundEffect(0);
 				gamePanel.obj[i] = null;
 				int randomNum = ThreadLocalRandom.current().nextInt(0, 2);
 				switch(randomNum) {

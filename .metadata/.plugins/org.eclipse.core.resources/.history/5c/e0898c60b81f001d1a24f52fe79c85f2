@@ -127,7 +127,7 @@ public class Player extends Entity{
 			if(gamePanel.obj[i].name.equals("puzzle")) {
 				gamePanel.playSoundEffect(1);
 				gamePanel.obj[i] = null;
-				gamePanel.ui.showMessage("You found a puzzle piece!");
+				gamePanel.ui.showMessage("You found a puzzle piece");
 				numOfPuzzles++;
 			} else if(gamePanel.obj[i].name.equals("gift")) {
 				gamePanel.playSoundEffect(0);
