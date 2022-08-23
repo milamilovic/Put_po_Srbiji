@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener{
 	
 	public boolean upPressed, downPressed, leftPressed, rightPressed, front, back;
+	public int code;
+	public boolean checkDrawingTime;
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -13,7 +15,7 @@ public class KeyManager implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int code = e.getKeyCode();
+		code = e.getKeyCode();
 		
 		if(code==KeyEvent.VK_UP || code==KeyEvent.VK_W) {
 			front = false;
@@ -34,12 +36,17 @@ public class KeyManager implements KeyListener{
 			front = false;
 			back = false;
 			rightPressed = true;
+		} 
+		else if(code==KeyEvent.VK_B) {
+			if(checkDrawingTime == false) {
+				checkDrawingTime = true;
+			}
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		int code = e.getKeyCode();
+		code = e.getKeyCode();
 		
 		if(code==KeyEvent.VK_UP || code==KeyEvent.VK_W) {
 			upPressed = false;
@@ -53,6 +60,11 @@ public class KeyManager implements KeyListener{
 		} 
 		else if(code==KeyEvent.VK_RIGHT || code==KeyEvent.VK_D) {
 			rightPressed = false;
+		}
+		else if(code==KeyEvent.VK_B) {
+			if(checkDrawingTime == true) {
+				checkDrawingTime = false;
+			}
 		}
 	}
 

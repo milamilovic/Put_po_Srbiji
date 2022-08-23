@@ -1,6 +1,9 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +27,7 @@ public class TileManager {
 		mapTileNum = new int[gamePanel.maxWorldCol][gamePanel.maxWorldRow];
 		
 		this.getTileImages();
+		this.setUp();
 		this.loadMap();
 	}
 	
@@ -569,6 +573,24 @@ public class TileManager {
 		
 	}
 	
+	
+	public void setUp() {
+		
+		for(int i = 0; i < tiles.length; i++) {
+			if(tiles[i] != null && ( i < 500 || i > 599 )) {
+				
+				BufferedImage scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
+				final AffineTransform at = AffineTransform.getScaleInstance((double)gamePanel.tileSize / (double)tiles[i].image.getWidth(), (double)gamePanel.tileSize / (double)tiles[i].image.getHeight());
+				final AffineTransformOp ato = new AffineTransformOp(at, AffineTransformOp.TYPE_BICUBIC);
+				scaledImage = ato.filter(tiles[i].image, scaledImage);
+				tiles[i].image = scaledImage;
+
+			}
+		}
+		
+	}
+	
+	
 	public void loadMap() {
 		try {
 			
@@ -626,7 +648,7 @@ public class TileManager {
 					worldCol += 2;
 				}
 				else {
-					g2.drawImage(tiles[tileNum].image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+					g2.drawImage(tiles[tileNum].image, screenX, screenY, null);
 				}
 			}
 			worldCol++;

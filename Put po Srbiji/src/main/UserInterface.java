@@ -14,12 +14,14 @@ public class UserInterface {
 	BufferedImage puzzleImage;
 	public boolean  messageOn = false;
 	public String message = ""; 
-	
+	public int messageCounter = 0;
+	public boolean gameFinished = false;
+	     
 
 	public UserInterface(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 		arial_20 = new Font("arial", Font.PLAIN, 20);
-		Puzzle puzzle = new Puzzle();
+		Puzzle puzzle = new Puzzle(gamePanel);
 		puzzleImage = puzzle.image;
 	}
 	
@@ -32,13 +34,29 @@ public class UserInterface {
 	
 	public void draw(Graphics2D g2) {
 		
-		g2.setFont(arial_20);
-		g2.setColor(Color.white);
-		g2.drawImage(puzzleImage, 10, 10, gamePanel.tileSize, gamePanel.tileSize, null);
-		g2.drawString(" =  " + gamePanel.player.numOfPuzzles, 60, 45);
-		if(messageOn) {
-			g2.drawString(message, 10, gamePanel.tileSize * gamePanel.maxWorldRow / 2);
+		if(gameFinished) {
+			
+			
+			
+		} else {
+			
+			g2.setFont(arial_20);
+			g2.setColor(Color.white);
+			g2.drawImage(puzzleImage, 10, 10, gamePanel.tileSize, gamePanel.tileSize, null);
+			g2.drawString(" =  " + gamePanel.player.numOfPuzzles, 60, 45);
+			if(messageOn) {
+				g2.drawString(message, 10, gamePanel.tileSize * gamePanel.maxWorldRow / 2);
+				
+				messageCounter++;
+				
+				if(messageCounter > 120) {
+					messageCounter = 0;
+					messageOn = false;
+				}
+			}
+			
 		}
+		
 		
 	}
 	
