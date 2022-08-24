@@ -14,12 +14,12 @@ public class ObjectManager {
 	public void setObjects() {
 		
 		gp.obj[0] = new Puzzle(gp);
-		gp.obj[0].worldX = 16 * gp.tileSize;
-		gp.obj[0].worldY = 3 * gp.tileSize;
+		gp.obj[0].worldX = 25 * gp.tileSize;
+		gp.obj[0].worldY = 18 * gp.tileSize;
 		
 		gp.obj[1] = new Gift(gp);
-		gp.obj[1].worldX = 2 * gp.tileSize;
-		gp.obj[1].worldY = 6 * gp.tileSize;
+		gp.obj[1].worldX = 12 * gp.tileSize;
+		gp.obj[1].worldY = 21 * gp.tileSize;
 		
 	}
 	

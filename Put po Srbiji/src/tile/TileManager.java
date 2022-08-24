@@ -28,7 +28,7 @@ public class TileManager {
 		
 		this.getTileImages();
 		this.setUp();
-		this.loadMap();
+		this.loadMap("/maps/examplemap.txt");
 	}
 	
 	public void getTileImages() {
@@ -238,58 +238,58 @@ public class TileManager {
 			
 			tiles[200] = new Tile();
 			tiles[200].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(01).png"));
-			tiles[200].collision = true;
+			tiles[200].collision = false;
 			tiles[201] = new Tile();
 			tiles[201].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(02).png"));
-			tiles[201].collision = true;
+			tiles[201].collision = false;
 			tiles[202] = new Tile();
 			tiles[202].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(03).png"));
-			tiles[202].collision = true;
+			tiles[202].collision = false;
 			tiles[203] = new Tile();
 			tiles[203].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(04).png"));
-			tiles[203].collision = true;
+			tiles[203].collision = false;
 			tiles[204] = new Tile();
 			tiles[204].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(05).png"));
-			tiles[204].collision = true;
+			tiles[204].collision = false;
 			tiles[205] = new Tile();
 			tiles[205].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(06).png"));
-			tiles[205].collision = true;
+			tiles[205].collision = false;
 			tiles[206] = new Tile();
 			tiles[206].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(07).png"));
-			tiles[206].collision = true;
+			tiles[206].collision = false;
 			tiles[207] = new Tile();
 			tiles[207].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(08).png"));
-			tiles[207].collision = true;
+			tiles[207].collision = false;
 			tiles[208] = new Tile();
 			tiles[208].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(09).png"));
-			tiles[208].collision = true;
+			tiles[208].collision = false;
 			tiles[209] = new Tile();
 			tiles[209].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(10).png"));
-			tiles[209].collision = true;
+			tiles[209].collision = false;
 			tiles[210] = new Tile();
 			tiles[210].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(11).png"));
-			tiles[210].collision = true;
+			tiles[210].collision = false;
 			tiles[211] = new Tile();
 			tiles[211].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(12).png"));
-			tiles[211].collision = true;
+			tiles[211].collision = false;
 			tiles[212] = new Tile();
 			tiles[212].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(13).png"));
-			tiles[212].collision = true;
+			tiles[212].collision = false;
 			tiles[213] = new Tile();
 			tiles[213].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(14).png"));
-			tiles[213].collision = true;
+			tiles[213].collision = false;
 			tiles[214] = new Tile();
 			tiles[214].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(15).png"));
-			tiles[214].collision = true;
+			tiles[214].collision = false;
 			tiles[215] = new Tile();
 			tiles[215].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(16).png"));
-			tiles[215].collision = true;
+			tiles[215].collision = false;
 			tiles[216] = new Tile();
 			tiles[216].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(17).png"));
-			tiles[216].collision = true;
+			tiles[216].collision = false;
 			tiles[217] = new Tile();
 			tiles[217].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(18).png"));
-			tiles[217].collision = true;
+			tiles[217].collision = false;
 			tiles[218] = new Tile();
 			tiles[218].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sun-wall(19).png"));
 			tiles[218].collision = true;
@@ -591,10 +591,10 @@ public class TileManager {
 	}
 	
 	
-	public void loadMap() {
+	public void loadMap(String filePath) {
 		try {
 			
-			InputStream is = getClass().getResourceAsStream("/maps/examplemap.txt");
+			InputStream is = getClass().getResourceAsStream(filePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));	
 			
 			int col = 0;
@@ -604,16 +604,21 @@ public class TileManager {
 				
 				String line = br.readLine();
 				
-				while(col<gamePanel.maxWorldCol) {	
+				while(col<gamePanel.maxWorldCol) {
+					if(line != null) {
 					String[] numbers = line.split(" ");
 					
+					while(col < numbers.length) {
 					int number = Integer.parseInt(numbers[col]);
 					
 					mapTileNum[col][row] = number;
 					col++;
+					}
+					}
+					col = gamePanel.maxWorldCol;
 				}
 					
-				if(col == gamePanel.maxWorldCol) {
+				if(col >= gamePanel.maxWorldCol) {
 					col = 0;
 					row++;
 				}
