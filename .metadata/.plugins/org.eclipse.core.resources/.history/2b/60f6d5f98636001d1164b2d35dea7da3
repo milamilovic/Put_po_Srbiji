@@ -1,0 +1,19 @@
+package entity;
+
+import java.awt.Rectangle;
+
+import main.GamePanel;
+
+public class NPC_boy extends Entity{
+
+	public NPC_boy(GamePanel gamePanel) {
+		super(gamePanel);
+		
+		this.direction = "front";	
+		speed = 3;
+		this.solidArea = new Rectangle(0, 0, 48, 48);
+	}
+	
+	
+
+}

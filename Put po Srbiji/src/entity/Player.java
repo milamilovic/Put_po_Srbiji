@@ -2,12 +2,7 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyManager;
@@ -26,6 +21,7 @@ public class Player extends Entity{
 	public int numOfPuzzles = 0;
 	
 	public Player(GamePanel gamePanel, KeyManager keyManager) {
+		super(gamePanel);
 		this.gamePanel = gamePanel;
 		this.keyManager = keyManager;
 		
@@ -45,71 +41,25 @@ public class Player extends Entity{
 	}
 	
 	public void setDefaultValues() {
-		worldX = gamePanel.tileSize * 22;
-		worldY = gamePanel.tileSize * 23;
+		worldX = this.gamePanel.tileSize * 22;
+		worldY = this.gamePanel.tileSize * 23;
 		speed = 4;
 		direction = "front";
 	}
 	
 	public void getPlayerImage() {
-		try {
+		
+			front = super.getImage("/player/girl_player_front.png");
+			up1 = super.getImage("/player/girl_player_up1.png");			
+			up2 = super.getImage("/player/girl_player_up2.png");
+			down1 = super.getImage("/player/girl_player_down1.png");
+			down2 = super.getImage("/player/girl_player_down2.png");
+			left1 = super.getImage("/player/girl_player_left1.png");
+			left2 = super.getImage("/player/girl_player_left2.png");
+			right1 = super.getImage("/player/girl_player_right1.png");
+			right2 = super.getImage("/player/girl_player_right2.png");
+			back = super.getImage("/player/girl_player_back.png");
 			
-			front = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_front.png"));
-			BufferedImage scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			final AffineTransform at = AffineTransform.getScaleInstance((double)gamePanel.tileSize / (double)front.getWidth(), (double)gamePanel.tileSize / (double)front.getHeight());
-			final AffineTransformOp ato = new AffineTransformOp(at, AffineTransformOp.TYPE_BICUBIC);
-			scaledImage = ato.filter(front, scaledImage);
-			front = scaledImage;
-			
-			up1 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_up1.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(up1, scaledImage);
-			up1 = scaledImage;
-			
-			up2 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_up2.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(up2, scaledImage);
-			up2 = scaledImage;
-			
-			down1 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_down1.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(down1, scaledImage);
-			down1 = scaledImage;
-			
-			down2 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_down2.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(down2, scaledImage);
-			down2 = scaledImage;
-			
-			left1 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_left1.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(left1, scaledImage);
-			left1 = scaledImage;
-			
-			left2 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_left2.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(left2, scaledImage);
-			left2 = scaledImage;
-			
-			right1 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_right1.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(right1, scaledImage);
-			right1 = scaledImage;
-			
-			right2 = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_right2.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(right2, scaledImage);
-			right2 = scaledImage;
-			
-			back = ImageIO.read(getClass().getResourceAsStream("/player/girl_player_back.png"));
-			scaledImage = new BufferedImage(gamePanel.tileSize, gamePanel.tileSize, BufferedImage.TYPE_INT_ARGB);
-			scaledImage = ato.filter(back, scaledImage);
-			back = scaledImage;
-			
-			
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void update() {
@@ -131,6 +81,8 @@ public class Player extends Entity{
 			gamePanel.colCheck.checkTile(this);
 			int objIndex = gamePanel.colCheck.checkObject(this, true);
 			this.pickUpObject(objIndex);
+			int npcIndex = gamePanel.colCheck.checkEntity(this, gamePanel.npc);
+			interactNPC(npcIndex);
 			
 			
 			if(collisionOn == false) {
@@ -167,6 +119,12 @@ public class Player extends Entity{
 	}
 	
 	
+	private void interactNPC(int i) {
+		if(i!=999) {
+			//interact with npc
+		}
+	}
+
 	public void pickUpObject(int i) {
 		if(i != 999) {
 			if(gamePanel.obj[i].name.equals("puzzle")) {

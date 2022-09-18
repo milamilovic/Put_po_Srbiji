@@ -8,6 +8,11 @@ public class KeyManager implements KeyListener{
 	public boolean upPressed, downPressed, leftPressed, rightPressed, front, back;
 	public int code;
 	public boolean checkDrawingTime;
+	public GamePanel gamePanel;
+	
+	public KeyManager(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -37,11 +42,11 @@ public class KeyManager implements KeyListener{
 			back = false;
 			rightPressed = true;
 		} 
-		else if(code==KeyEvent.VK_B) {
+		else if(code==KeyEvent.VK_B) { //type b for bug
 			if(checkDrawingTime == false) {
 				checkDrawingTime = true;
 			}
-		}
+		} 
 	}
 
 	@Override
@@ -64,6 +69,13 @@ public class KeyManager implements KeyListener{
 		else if(code==KeyEvent.VK_B) {
 			if(checkDrawingTime == true) {
 				checkDrawingTime = false;
+			}
+		}
+		else if(code==KeyEvent.VK_P) { //p for pause
+			if(gamePanel.gameState == gamePanel.playState) {
+				gamePanel.gameState = gamePanel.pauseState;
+			} else if(gamePanel.gameState == gamePanel.pauseState) {
+				gamePanel.gameState = gamePanel.playState;
 			}
 		}
 	}

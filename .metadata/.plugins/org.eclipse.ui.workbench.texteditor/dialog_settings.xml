@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="313"/>
+		<item key="selection" value="/npc/boy"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="/player/girl_player"/>
 			<item value="301"/>
 			<item value="&#x09;"/>
 			<item value="o"/>
@@ -17,8 +18,9 @@
 			<item value="x"/>
 		</list>
 		<list key="replacehistory">
-			<item value="313"/>
+			<item value="/npc/boy"/>
 			<item value=""/>
+			<item value="313"/>
 			<item value="gp"/>
 			<item value="worldY"/>
 			<item value="worldX"/>

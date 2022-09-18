@@ -1,0 +1,39 @@
+package entity;
+
+import java.awt.Rectangle;
+
+import main.GamePanel;
+
+public class NPC_boy extends Entity{
+
+	public NPC_boy(GamePanel gamePanel) {
+		super(gamePanel);
+		
+		this.direction = "front";	
+		speed = 3;
+		this.solidArea = new Rectangle(0, 0, 48, 48);
+		
+		getBoyImage();
+	}
+	
+	
+	public void getBoyImage() {
+		
+			front = super.getImage("/npc/boy_front.png");
+			up1 = super.getImage("/npc/boy_up1.png");			
+			up2 = super.getImage("/npc/boy_up2.png");
+			down1 = super.getImage("/npc/boy_down1.png");
+			down2 = super.getImage("/npc/boy_down2.png");
+			left1 = super.getImage("/npc/boy_left1.png");
+			left2 = super.getImage("/npc/boy_left2.png");
+			right1 = super.getImage("/npc/boy_right1.png");
+			right2 = super.getImage("/npc/boy_right2.png");
+			back = super.getImage("/npc/boy_back.png");
+			
+	}
+	
+	public void setAction() {
+		
+	}
+
+}
