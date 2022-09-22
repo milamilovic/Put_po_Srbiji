@@ -81,8 +81,9 @@ public class Player extends Entity{
 			gamePanel.colCheck.checkTile(this);
 			int objIndex = gamePanel.colCheck.checkObject(this, true);
 			this.pickUpObject(objIndex);
-			int npcIndex = gamePanel.colCheck.checkEntity(this, gamePanel.npc);
-			interactNPC(npcIndex);
+			intersectsNPC = false;
+			gamePanel.colCheck.checkEntity(this, gamePanel.npc);
+			//interactNPC(npcIndex);
 			
 			
 			if(collisionOn == false) {
@@ -116,12 +117,19 @@ public class Player extends Entity{
 		} else if(keyManager.back) {
 			direction = "back";
 		}
+		int npcIndex = gamePanel.colCheck.checkEntity(this, gamePanel.npc);
+		interactNPC(npcIndex);
 	}
 	
 	
-	private void interactNPC(int i) {
+	public void interactNPC(int i) {
 		if(i!=999) {
-			//interact with npc
+			System.out.println("npc");
+			if(gamePanel.keyManager.enterPressed) {
+				gamePanel.gameState = gamePanel.dialogueState;
+				gamePanel.npc[i].speak();
+			}
+			gamePanel.keyManager.enterPressed = false;
 		}
 	}
 

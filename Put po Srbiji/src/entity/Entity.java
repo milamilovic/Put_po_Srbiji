@@ -35,6 +35,10 @@ public class Entity {
 	
 	public int spriteInterval = 0;
 	
+	public String[] dialogues = new String[20];
+	public int dialogueIndex = 0;
+	public boolean intersectsNPC = false;
+	
 	
 	public BufferedImage getImage(String ImageName) {
 		try {
@@ -53,6 +57,32 @@ public class Entity {
 	}
 	
 	public void setAction() {
+	}
+	public void speak() {
+		
+		if(dialogues[dialogueIndex] == null) {
+			dialogueIndex = 0;
+		}
+		gamePanel.ui.currentDialogue = dialogues[dialogueIndex];  
+		dialogueIndex += 1;
+		
+		switch(gamePanel.player.direction) {
+			case("up"):
+			case("back"):
+				direction = "down";
+				break;
+			case("down"):
+			case("front"):
+				direction = "up";
+				break;
+			case("left"):
+				direction = "right";
+				break;
+			case("right"):
+				direction = "left";
+				break;
+		}
+		
 	}
 	
 	public void update() {

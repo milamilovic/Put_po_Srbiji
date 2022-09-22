@@ -15,6 +15,8 @@ public class NPC_boy extends Entity{
 		this.solidArea = new Rectangle(0, 0, 48, 48);
 		
 		getBoyImage();
+		
+		setDialogue();
 	}
 	
 	
@@ -55,6 +57,17 @@ public class NPC_boy extends Entity{
 			}
 			spriteInterval = 0;
 		}
+	}
+	
+	public void setDialogue() {
+		dialogues[0] = "Hey!";
+		dialogues[1] = "You're the famous adventurer that we've been expecting, right?";
+		dialogues[2] = "I'me glad you arrived safely. The woods and the seas are not as safe \nas they've once been...";
+		dialogues[3] = "Anyway... Have a grat time, hope I'll have a chance to speak to you \nagain!";
+	}
+	
+	public void speak() {
+		super.speak();
 	}
 
 }

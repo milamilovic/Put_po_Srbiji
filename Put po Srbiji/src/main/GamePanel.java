@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
 	int FPS = 60;
 
 	public TileManager tileManager = new TileManager(this);
-	KeyManager keyManager = new KeyManager(this);
+	public KeyManager keyManager = new KeyManager(this);
 	Sound sound = new Sound();
 	Sound soundEffect = new Sound();
 	public CollisionChecker colCheck = new CollisionChecker(this);
@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public int gameState;
 	public final int playState = 1;
 	public final int pauseState = 2;
-	
+	public final int dialogueState = 3;
 	
 	
 	public GamePanel() {
@@ -107,9 +107,10 @@ public class GamePanel extends JPanel implements Runnable{
 					npc[i].update();
 				}
 			}
-		} else if(gameState == pauseState) {
+		} 
+		if(gameState == pauseState) {
 			//not updating since the game is paused
-		}
+		} 
 	}
 	
 	public void paintComponent(Graphics g) {
